@@ -49,14 +49,6 @@ async def test_describe_table_with_schema_qualified_name(mocker: MockerFixture) 
 @pytest.mark.asyncio
 async def test_describe_table_with_comments_uses_cache(mocker: MockerFixture) -> None:
     """Test that describe_table_with_comments uses cache on second call."""
-    # Clear rate limit for this test
-    from src.utils.validators import _LAST_CALL
-
-    _LAST_CALL.clear()
-
-    # Mock rate_limit to always return None
-    mocker.patch("src.tools.schema.rate_limit", return_value=None)
-
     mock_conn = mocker.AsyncMock()
     mock_conn.fetchrow.return_value = {"table_comment": "Test"}
     mock_conn.fetch.return_value = [

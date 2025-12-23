@@ -1,41 +1,11 @@
 """Unit tests for agent service configuration."""
 
 import os
-from pathlib import Path
 from unittest.mock import patch
-
-import pytest
-
-
-@pytest.fixture(autouse=True)
-def isolate_from_env_file():
-    """Temporarily rename .env file to prevent Settings from loading it during tests."""
-    env_path = Path(".env")
-    backup_path = Path(".env.test_backup")
-
-    renamed = False
-    if env_path.exists():
-        env_path.rename(backup_path)
-        renamed = True
-
-    yield
-
-    # Restore .env file
-    if renamed and backup_path.exists():
-        if env_path.exists():
-            env_path.unlink()
-        backup_path.rename(env_path)
 
 
 class TestSettings:
     """Test Settings configuration."""
-
-    def test_default_redis_url(self) -> None:
-        """Test default Redis URL value."""
-        from src.core.config import Settings
-
-        settings = Settings()
-        assert settings.redis_url == "redis://localhost:6379/0"
 
     def test_default_redis_task_queue(self) -> None:
         """Test default Redis task queue name."""

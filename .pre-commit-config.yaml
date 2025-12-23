@@ -10,7 +10,7 @@ repos:
       - id: check-added-large-files
         exclude: |
           (?x)^(
-            .resources/demo.mp4|
+            .resources/demo.gif|
           )$
       - id: check-case-conflict
       - id: check-merge-conflict

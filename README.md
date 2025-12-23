@@ -37,15 +37,9 @@
 
 **🚀 Deploy Anywhere** — Docker Compose for local, Kubernetes for scale, or cloud platforms (AWS, Azure, GCP)
 
-<div align="center">
+---
 
-<a href=".resources/demo.mp4">
-  <img src=".resources/demo.jpg" alt="QueryGenie Demo" style="max-width: 1000px;">
-</a>
-
-*Click to watch the full demo video*
-
-</div>
+![QueryGenie Demo](.resources/demo.gif)
 
 ### Core Components
 
@@ -58,16 +52,6 @@
 | **Message Broker** | Event queue and pub/sub for distributed task processing | Redis 7 |
 
 ---
-
-## 🚀 Key Features
-
-- **🎨 Interactive Dashboard** — Real-time visualization of agent reasoning, tool execution, and workflow with SSE streaming
-- **🤖 Agentic RAG** — Multi-step reasoning with autonomous data retrieval, schema exploration, and intelligent synthesis
-- **🔐 Enterprise Security** — Input sanitization, prompt injection detection, XSS/SQL injection prevention via AST parsing, CORS controls, rate limiting, and read-only enforcement
-- **📊 Natural Language Queries** — Plain English to SQL with multi-database support and AI-generated insights
-- **⚡ Horizontally Scalable** — Multiple agent workers, custom tools, expert agents, and flexible LLM providers
-- **🏗️ Event-Driven Architecture** — Decoupled services, async I/O, Redis pub/sub, and graceful error handling
-
 
 ## 🏛️ System Architecture
 

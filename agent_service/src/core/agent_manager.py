@@ -21,8 +21,7 @@ from strands.session.file_session_manager import FileSessionManager
 from strands.tools.mcp import MCPClient
 from strands_tools import calculator
 
-from ..utils import get_logger
-from ..utils.session_cleanup import remove_session_directory
+from ..utils import get_logger, remove_session_directory
 from .config import settings
 from .prompts import SYSTEM_PROMPT
 

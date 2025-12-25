@@ -64,7 +64,7 @@ export function WorkflowDialog({
       visible={visible}
       onHide={onHide}
       className={styles.workflowDialog}
-      style={{ width: '70vw', height: '80vh' }}
+      style={{ width: '80vw', height: '90vh' }}
       modal
       maximizable
       draggable

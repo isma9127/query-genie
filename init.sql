@@ -348,7 +348,7 @@ DECLARE
     current_category INTEGER;
 BEGIN
     SELECT COUNT(*) INTO manufacturer_count FROM manufacturers;
-    products_per_category := 6250; -- 50000 / 8 categories
+    products_per_category := 3125; -- 25000 / 8 categories
 
     -- Generate products for each category
     FOR current_category IN 1..8 LOOP
@@ -665,7 +665,7 @@ BEGIN
     END LOOP;
 END $$;
 
--- Generate more customers (2,500 total)
+-- Generate more customers (1,250 total)
 DO $$
 DECLARE
     i INTEGER;
@@ -676,7 +676,7 @@ DECLARE
     countries TEXT[] := ARRAY['USA', 'Spain', 'China', 'UK', 'Germany', 'France', 'Japan', 'Australia', 'Canada', 'Brazil'];
     cities TEXT[] := ARRAY['New York', 'Madrid', 'Beijing', 'London', 'Berlin', 'Paris', 'Tokyo', 'Sydney', 'Toronto', 'São Paulo'];
 BEGIN
-    FOR i IN 11..2500 LOOP
+    FOR i IN 11..1250 LOOP
         INSERT INTO customers (first_name, last_name, email, phone, country, city, address, loyalty_points)
         VALUES (
             first_names[1 + floor(random() * array_length(first_names, 1))],
@@ -691,7 +691,7 @@ BEGIN
     END LOOP;
 END $$;
 
--- Generate more orders (10,000 total)
+-- Generate more orders (5,000 total)
 DO $$
 DECLARE
     i INTEGER;
@@ -702,8 +702,8 @@ DECLARE
     random_days INTEGER;
     order_total DECIMAL(12,2);
 BEGIN
-    FOR i IN 11..10000 LOOP
-        random_customer := floor(random() * 2500 + 1)::INTEGER;
+    FOR i IN 11..5000 LOOP
+        random_customer := floor(random() * 1250 + 1)::INTEGER;
         random_warehouse := floor(random() * 5 + 1)::INTEGER;
         random_status := statuses[1 + floor(random() * array_length(statuses, 1))];
         random_days := floor(random() * 90)::INTEGER;
@@ -738,7 +738,7 @@ DECLARE
 BEGIN
     SELECT MAX(product_id) INTO max_product_id FROM products;
 
-    FOR i IN 11..10000 LOOP
+    FOR i IN 11..5000 LOOP
         items_count := floor(random() * 4 + 1)::INTEGER; -- 1 to 5 items per order
 
         FOR j IN 1..items_count LOOP
@@ -762,7 +762,7 @@ BEGIN
     END LOOP;
 END $$;
 
--- Generate product reviews (25,000 reviews)
+-- Generate product reviews (12,500 reviews)
 DO $$
 DECLARE
     i INTEGER;
@@ -781,7 +781,7 @@ BEGIN
     SELECT MAX(product_id) INTO max_product_id FROM products;
     SELECT MAX(customer_id) INTO max_customer_id FROM customers;
 
-    FOR i IN 1..25000 LOOP
+    FOR i IN 1..12500 LOOP
         random_product := floor(random() * max_product_id + 1)::INTEGER;
         random_customer := floor(random() * max_customer_id + 1)::INTEGER;
         random_rating := floor(random() * 5 + 1)::INTEGER;

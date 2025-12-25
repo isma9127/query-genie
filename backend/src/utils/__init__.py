@@ -12,6 +12,7 @@ from .redis_client import (
     create_error_event,
     create_session_event,
     enqueue_task,
+    mark_task_cancelled,
     subscribe_task_events,
 )
 from .session import get_session_info
@@ -24,5 +25,6 @@ __all__ = [
     "subscribe_task_events",
     "create_session_event",
     "create_error_event",
+    "mark_task_cancelled",
     "get_session_info",
 ]

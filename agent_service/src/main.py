@@ -9,6 +9,7 @@ Main module that:
 
 import asyncio
 import json
+import time
 from typing import Any
 
 import redis.asyncio as redis
@@ -110,6 +111,10 @@ class TaskProcessor:
         Args:
             task: Task dictionary with task_id, session_id, message
         """
+        if not self._redis:
+            logger.error("Cannot process task: Redis client not initialized")
+            return
+
         task_id = task["task_id"]
         session_id = task["session_id"]
         message = task["message"]
@@ -124,12 +129,16 @@ class TaskProcessor:
         pending_tools: dict[str, dict[str, Any]] = {}
         workflow_steps: list[dict[str, Any]] = []
         step_counter = 0
+        last_cancel_check = 0.0  # Track last cancellation check time
 
         try:
             # Stream agent response
             async for event in agent.stream_async(message):
-                # Check for cancellation
-                if self._redis and await is_task_cancelled(self._redis, task_id):
+                # Check for cancellation (rate-limited to every 5 seconds)
+                is_cancelled, last_cancel_check = await is_task_cancelled(
+                    self._redis, task_id, time.time(), last_cancel_check
+                )
+                if is_cancelled:
                     logger.info(f"Task {task_id[:8]} cancelled by user")
                     await self._publish(
                         task_id,

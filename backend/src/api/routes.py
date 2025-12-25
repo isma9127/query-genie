@@ -18,6 +18,7 @@ from ..utils import (
     create_error_event,
     enqueue_task,
     get_session_info,
+    mark_task_cancelled,
     subscribe_task_events,
     validate_session_id,
 )
@@ -130,7 +131,7 @@ async def chat_stream(
             # Stream events from Redis Pub/Sub
             async for event in subscribe_task_events(redis_client, task_id):
                 if await http_request.is_disconnected():
-                    logger.info("Client disconnected from stream; stopping generator.")
+                    await mark_task_cancelled(redis_client, task_id)
                     break
 
                 yield {"event": "message", "data": json.dumps(event)}

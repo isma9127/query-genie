@@ -10,7 +10,7 @@ Contains:
 from .formatting import extract_final_response, format_error_message
 from .logging_config import configure_logging, get_logger
 from .metrics import get_metrics, save_metrics
-from .session_cleanup import cleanup_sessions
+from .session_cleanup import cleanup_sessions, remove_session_directory
 
 __all__ = [
     "extract_final_response",
@@ -20,4 +20,5 @@ __all__ = [
     "save_metrics",
     "get_metrics",
     "cleanup_sessions",
+    "remove_session_directory",
 ]

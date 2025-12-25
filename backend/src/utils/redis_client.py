@@ -198,3 +198,22 @@ def create_error_event(message: str, session_id: str | None = None) -> dict[str,
     if session_id:
         event["session_id"] = session_id
     return event
+
+
+async def mark_task_cancelled(
+    redis_client: redis.Redis,
+    task_id: str,
+    ttl_seconds: int = 300,
+) -> None:
+    """Mark a task as cancelled.
+
+    Sets a Redis key that the agent service checks to stop processing.
+
+    Args:
+        redis_client: Connected Redis client
+        task_id: Task identifier to cancel
+        ttl_seconds: How long to keep the cancellation marker (default 5 minutes)
+    """
+    cancelled_key = f"task:{task_id}:cancelled"
+    await redis_client.setex(cancelled_key, ttl_seconds, "1")
+    logger.info(f"Task {task_id[:8]} marked as cancelled")

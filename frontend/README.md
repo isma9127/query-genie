@@ -10,7 +10,6 @@ The Frontend Dashboard is a modern React application that provides an interactiv
 - **Reasoning Visualization** — Expandable thinking boxes show agent's step-by-step reasoning process
 - **Tool Execution Tracking** — Visual indicators for database queries, schema exploration, and other tool usage
 - **Complete Workflow Timeline** — Detailed view of all reasoning steps and tool calls via dialog
-- **Session Persistence** — Secure httpOnly cookie-based sessions prevent XSS attacks
 - **Responsive Design** — Clean, modern UI with smooth animations and typewriter effects
 - **Markdown Rendering** — Full GFM support with syntax highlighting for code blocks
 

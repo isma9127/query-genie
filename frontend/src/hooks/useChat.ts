@@ -4,7 +4,7 @@ import { streamChat } from '../services';
 
 /**
  * Custom hook for managing chat state and streaming.
- * Session management is handled automatically via secure httpOnly cookies.
+ * Session IDs are managed via Redis and returned in SSE events.
  */
 export function useChat(): UseChatReturn {
   // ======================

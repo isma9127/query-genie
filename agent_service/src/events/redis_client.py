@@ -17,6 +17,9 @@ from ..utils import get_logger
 
 logger = get_logger(__name__)
 
+# Check cancellation every 5 seconds to avoid Redis overload
+CANCEL_CHECK_INTERVAL = 5.0
+
 
 async def create_redis_client(
     max_retries: int = 5, initial_delay: float = 1.0
@@ -125,19 +128,36 @@ async def publish_event(
     logger.debug(f"Published event to {channel}: {event.get('type')}")
 
 
-async def is_task_cancelled(redis_client: redis.Redis, task_id: str) -> bool:
+async def is_task_cancelled(
+    redis_client: redis.Redis,
+    task_id: str,
+    current_time: float,
+    last_check: float,
+) -> tuple[bool, float]:
     """Check if a task has been cancelled.
+
+    Implements rate limiting to avoid Redis overload - only checks Redis
+    every 5 seconds per task. Returns False if not enough time has elapsed
+    since last check.
 
     Args:
         redis_client: Connected Redis client
         task_id: Task identifier to check
+        current_time: Current timestamp (from time.time())
+        last_check: Timestamp of last cancellation check for this task
 
     Returns:
-        True if task is cancelled
+        Tuple of (is_cancelled, updated_last_check_time)
     """
+    # Only check Redis if enough time has elapsed
+    if (current_time - last_check) < CANCEL_CHECK_INTERVAL:
+        return False, last_check
+
+    # Check Redis for cancellation
     cancelled_key = f"task:{task_id}:cancelled"
     exists: int = await redis_client.exists(cancelled_key)
-    return exists > 0
+
+    return exists > 0, current_time
 
 
 async def mark_task_cancelled(

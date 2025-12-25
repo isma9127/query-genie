@@ -19,6 +19,11 @@
 
 **QueryGenie** is a complete, production-ready agentic AI platform that demonstrates how to build **enterprise-grade intelligent systems** from the ground up. Unlike typical side projects, QueryGenie is built for **real-world deployment, research, and experimentation**.
 
+
+![QueryGenie Demo](.resources/demo.gif)
+
+---
+
 ### What You Get
 
 **🤖 Complete AI Agent Stack** — Agentic RAG with autonomous reasoning loops, multi-step query execution, schema exploration, and intelligent result synthesis
@@ -37,9 +42,6 @@
 
 **🚀 Deploy Anywhere** — Docker Compose for local, Kubernetes for scale, or cloud platforms (AWS, Azure, GCP)
 
----
-
-![QueryGenie Demo](.resources/demo.gif)
 
 ### Core Components
 
@@ -339,13 +341,15 @@ cp example.env .env
 
 Connect to one or multiple PostgreSQL databases:
 
+> **💡 Note**: By default, QueryGenie initializes a PostgreSQL database with sample data (products, orders, customers) for development and testing purposes. This happens automatically when using `docker compose up`. You can connect to your own existing PostgreSQL servers by configuring the `DATABASE{N}_URL` variables below.
+
 ```env
 # Pattern: DATABASE{N}_URL where N = 1, 2, 3...
 DATABASE1_URL=postgresql://user:password@localhost:5432/production_db
 DATABASE2_URL=postgresql://user:password@localhost:5432/analytics_db
 DATABASE3_URL=postgresql://user:password@localhost:5432/staging_db
 
-# For Docker PostgreSQL initialization
+# For Docker PostgreSQL initialization (sample database)
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 POSTGRES_DB=querygenie

